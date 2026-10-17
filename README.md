@@ -1,142 +1,82 @@
-# GitHub Pages Deployment Guide for Your Personal Website
+# Zahra Taheri — Applied AI & Research Portfolio
 
-## Overview
+A static, source-first portfolio prepared for **https://zahta.github.io**. It presents evidence-backed applied AI experience, project case studies, research, teaching, and CV information without a backend or database. The existing GitHub repository was inspected: it contains an older compiled single-page site. GitHub Pages is not currently enabled, and the live address returns a GitHub Pages not-found page. This project has **not** been pushed or deployed.
 
-This guide will walk you through deploying your personal portfolio website to GitHub Pages, making it accessible at `https://zahta.github.io`.
+## Project structure
 
-## Prerequisites
+```text
+.
+├── .github/workflows/pages.yml   # GitHub Actions build and Pages deployment
+├── .nojekyll                     # Prevents implicit Jekyll processing
+├── docs/diagrams/*.mmd           # Editable source for evidence-backed diagrams
+├── public/manus-routes.json      # Route manifest used by the build
+├── scripts/build.js              # Zero-dependency static-site generator
+├── src/assets/                   # CSS, favicon, project figures, portrait, CV downloads
+├── src/content/cv.md             # Source for the portfolio-formatted CV download
+├── src/pages/                    # Accessible HTML content, one fragment per route
+├── src/site-data.js              # Canonical URL, page metadata, navigation, schema data
+└── package.json                  # Build and local preview commands; no packages required
+```
 
-- A GitHub account (you already have this: https://github.com/zahta)
-- Git installed on your local machine
-- The website files provided
+The build writes static pages to `dist/`, with one `index.html` per route. It adds route-specific canonical, description, Open Graph and Twitter metadata, a favicon, sitemap, robots instructions, and a custom 404 page. Internal links and asset URLs target the root of the GitHub user site, so no repository-name path prefix is needed.
 
-## Step-by-Step Deployment Instructions
+## Local development and build
 
-### Step 1: Create a New Repository
-
-1. Go to GitHub.com and sign in to your account
-2. Click the "+" icon in the top right corner and select "New repository"
-3. Name your repository exactly: `zahta.github.io` (this is important for GitHub Pages to work automatically)
-4. Make sure the repository is set to "Public"
-5. Do NOT initialize with README, .gitignore, or license (we'll add our own files)
-6. Click "Create repository"
-
-### Step 2: Prepare Your Local Files
-
-1. Download and extract the website files I've provided
-2. Open a terminal/command prompt
-3. Navigate to the extracted folder containing your website files
-
-### Step 3: Initialize Git and Upload Files
-
-Run the following commands in your terminal:
+Requirements: Node.js 20 or newer and Python 3.8 or newer. No runtime packages need installing.
 
 ```bash
-# Initialize a new Git repository
-git init
-
-# Add all files to the repository
-git add .
-
-# Make your first commit
-git commit -m "Initial commit: Add personal portfolio website"
-
-# Add your GitHub repository as the remote origin
-git remote add origin https://github.com/zahta/zahta.github.io.git
-
-# Push your files to GitHub
-git push -u origin main
+npm run build
+npm run dev
 ```
 
-### Step 4: Enable GitHub Pages (if needed)
+The local preview is served at `http://localhost:3000`; stop it with `Ctrl+C`. The deployed website is plain static HTML, CSS, images, and metadata. Python is used only for the local preview server.
 
-1. Go to your repository on GitHub: https://github.com/zahta/zahta.github.io
-2. Click on "Settings" tab
-3. Scroll down to "Pages" in the left sidebar
-4. Under "Source", select "Deploy from a branch"
-5. Select "main" branch and "/ (root)" folder
-6. Click "Save"
+## Deploy to the existing `zahta.github.io` repository
 
-### Step 5: Access Your Website
+The public repository already exists. It currently contains an older built site (`index.html`, `assets/`, and `favicon.ico`), but its Pages settings are not configured. The new workflow deploys the generated `dist/` artifact with GitHub Actions. It does not need to delete the old files from the source branch, but do preserve them in Git history before changing deployment.
 
-After a few minutes, your website will be available at:
-**https://zahta.github.io**
+1. Download and extract this project. In a terminal, clone the existing repository and create a backup branch:
 
-## Important Notes
+   ```bash
+   git clone https://github.com/zahta/zahta.github.io.git
+   cd zahta.github.io
+   git switch -c backup-before-portfolio-refresh
+   git push -u origin backup-before-portfolio-refresh
+   git switch main
+   git pull --ff-only
+   ```
 
-### File Structure
-Your website uses the following structure:
-```
-zahta.github.io/
-├── index.html          # Main HTML file
-├── assets/
-│   ├── index-[hash].css # Compiled CSS
-│   ├── index-[hash].js  # Compiled JavaScript
-│   └── profile-photo-[hash].png # Your profile image
-└── README.md           # Optional documentation
-```
+   The backup branch preserves the current compiled site and README. If you prefer not to create a branch, download a ZIP of the existing repository first.
 
-### Updating Your Website
+2. Copy the **contents** of the extracted portfolio project into the repository root, including the hidden `.github/` directory and `.nojekyll`. Do not copy the project’s `dist/` directory if one exists; the Actions workflow builds it. Review any overwrite prompts. This replaces the old README with this project’s deployment and update guide, but the old compiled `index.html` and assets remain in source control unless you deliberately remove them.
 
-To make changes to your website:
+3. Review the staged changes and commit them on `main`:
 
-1. Edit the source files in your local React project
-2. Run `pnpm run build` to create new production files
-3. Copy the contents of the `dist/` folder to your GitHub repository
-4. Commit and push the changes:
+   ```bash
+   git add .
+   git status --short
+   git commit -m "Prepare evidence-led portfolio for GitHub Pages"
+   git push origin main
+   ```
 
-```bash
-git add .
-git commit -m "Update website content"
-git push origin main
-```
+4. On GitHub, open the repository’s **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**, and save if needed. The workflow deploys on pushes to `main` or when manually started from the **Actions** tab.
 
-### Custom Domain (Optional)
+5. In **Actions**, wait for **Deploy GitHub Pages** to complete successfully. Then visit **https://zahta.github.io** and check the home page, project routes, CV downloads, external links, and a narrow mobile layout.
 
-If you want to use a custom domain instead of zahta.github.io:
+The workflow uses the `pages: write` and `id-token: write` permissions required for deployment. Repository settings and public GitHub changes must be made from your GitHub account; they have not been changed by this preparation.
 
-1. Purchase a domain from a domain registrar
-2. In your repository settings, go to Pages > Custom domain
-3. Enter your domain name
-4. Configure your domain's DNS settings to point to GitHub Pages
+## Updating content
 
-## Troubleshooting
+- Edit the relevant HTML fragment in `src/pages/`.
+- For new or renamed routes, update `src/site-data.js` and `public/manus-routes.json` together; the build checks that the route lists match.
+- Update `src/pages/research.html` for research roles and publication summaries, and use the project case-study pages for evidence-backed detail.
+- Update `src/pages/teaching.html` for courses and supervision. Add dates, outcomes, or testimonials only when you can verify them.
+- Update `src/pages/cv.html` for the web CV and `src/content/cv.md` for the Markdown source. Replace `src/assets/zahra-taheri-cv.pdf` with a preferred final PDF when available; the included PDF is formatted from the supplied CV text, not an original uploaded file.
+- Update canonical URL, page metadata, social image, or navigation in `src/site-data.js`.
+- Replace or add imagery in `src/assets/images/`. Keep repository figure captions and alt text descriptive.
 
-### Common Issues:
+After edits, run `npm run build`, inspect the generated `dist/` output, commit, and push to `main`. The Actions workflow will build and deploy the update.
 
-1. **Website not loading**: Wait 5-10 minutes after pushing changes
-2. **404 Error**: Make sure your repository is named exactly `zahta.github.io`
-3. **Images not showing**: Check that image paths are correct and files are in the assets folder
-4. **CSS not applying**: Ensure the CSS file is properly linked in index.html
+## Accuracy and scope
 
-### Getting Help:
-
-- GitHub Pages Documentation: https://docs.github.com/en/pages
-- GitHub Support: https://support.github.com/
-
-## Website Features
-
-Your personal website includes:
-
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Modern Animations**: Smooth scrolling and hover effects
-- **Professional Sections**:
-  - Hero section with your photo and introduction
-  - About section highlighting your achievements
-  - Professional experience with detailed descriptions
-  - Technical skills showcase
-  - Featured projects from your GitHub
-  - Contact section with links to your profiles
-
-- **SEO Optimized**: Proper meta tags and semantic HTML structure
-- **Fast Loading**: Optimized images and efficient code
-
-## Maintenance
-
-- Update your experience and projects regularly
-- Keep your GitHub repositories active to showcase ongoing work
-- Consider adding a blog section for technical articles
-- Update your profile photo periodically
-
-Your website is now ready for deployment! Follow these steps, and you'll have a professional online presence at https://zahta.github.io.
-
+The medical-startup work is anonymized and avoids proprietary details. FunQG is collaborative research; Zahra is a shared first author. LLM Systems Lab is an independent project, and its current implementation is distinguished from documented future directions. The RAG evaluator’s deterministic lexical matching limitations are stated explicitly. FastAPI, Docker, orchestration, n8n, Agentic AI, and MCP are described proportionately to the supplied CV. No unsupported clinical outcomes or performance metrics are claimed.

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+__pycache__/
+*.py[cod]
+# Private transfer notes; intentionally remain in the handoff archive but not the public GitHub repository.
+TODO.md
+HANDOFF.md
+docs/content-inventory.md
+# Manus project UI branding; not used by GitHub Pages.
+app.config.ts

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title">
+  <title id="title">ZT geometric monogram</title>
+  <rect x="2" y="2" width="44" height="44" rx="13" fill="#1d2c33"/>
+  <path d="M12 15h24L13 33h23" fill="none" stroke="#f2f0ea" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="36" cy="15" r="3.3" fill="#d77e4f"/>
+  <circle cx="13" cy="33" r="3.3" fill="#6d9d8b"/>
+</svg>

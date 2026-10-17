@@ -1,0 +1,31 @@
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#faf9f5", "primaryTextColor": "#1d2c33", "primaryBorderColor": "#315d83", "lineColor": "#6d9d8b", "secondaryColor": "#e9e7e0", "tertiaryColor": "#f2f0ea", "fontFamily": "Arial, sans-serif"}}}%%
+flowchart TB
+  subgraph INGEST["Document ingestion — implemented"]
+    PDF["Source PDFs"] --> LOAD["Load · clean · chunk"]
+    LOAD --> EMB["Hugging Face embeddings"]
+    EMB --> VDB[("Persistent Chroma store")]
+  end
+
+  subgraph QUERY["Query path — implemented"]
+    Q["User question"] --> QE["Embed query"]
+    QE --> MMR["Semantic retrieval + MMR"]
+    VDB --> MMR
+    MMR --> DEDUP["Exact-text de-duplication"]
+    DEDUP --> CTX["Bounded context + grounded prompt"]
+    CTX --> ROUTER{"Unified LLM client"}
+    ROUTER --> OLLAMA["Local · Ollama"]
+    ROUTER --> GEMINI["Remote · Gemini"]
+    OLLAMA --> ANSWER["Answer + model metadata"]
+    GEMINI --> ANSWER
+  end
+
+  subgraph EVAL["Evaluation and observability — implemented"]
+    ANSWER --> LOG["JSONL traces · latency · metadata"]
+    DATA["Labeled supporting-facts data"] --> MATCH["Deterministic lexical matching"]
+    MMR --> MATCH
+    MATCH --> METRICS["Hit Rate@K · Recall@K · MRR"]
+    METRICS --> REPORT["Reports · failure analysis"]
+  end
+
+  classDef implemented fill:#faf9f5,stroke:#315d83,color:#1d2c33,stroke-width:1px;
+  class PDF,LOAD,EMB,VDB,Q,QE,MMR,DEDUP,CTX,ROUTER,OLLAMA,GEMINI,ANSWER,LOG,DATA,MATCH,METRICS,REPORT implemented;

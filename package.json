@@ -1,0 +1,13 @@
+{
+  "name": "zahra-taheri-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static GitHub Pages portfolio for Zahra Taheri",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "npm run build && python3 -m http.server 3000 --directory dist"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

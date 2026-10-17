@@ -1,0 +1,13 @@
+%% Schematic only: components are grouped for clarity; no proprietary production-stage order is claimed.
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#faf9f5", "primaryTextColor": "#1d2c33", "primaryBorderColor": "#315d83", "lineColor": "#6d9d8b", "secondaryColor": "#e9e7e0", "tertiaryColor": "#f2f0ea", "fontFamily": "Arial, sans-serif"}}}%%
+flowchart TB
+  IN["Mobile photos · multiple views"] --> CV["Human detection · pose estimation · segmentation · landmark refinement"]
+  CV --> QC["View classification · confidence estimation · anatomical plausibility"]
+  QC --> GEO["Geometry-based post-processing"]
+  GEO --> OUT["Structured anatomical measurements"]
+  OUT --> API["Product integration · AI API workflow validation"]
+
+  classDef stage fill:#faf9f5,stroke:#315d83,color:#1d2c33,stroke-width:1px;
+  classDef review fill:#e9f0eb,stroke:#6d9d8b,color:#1d2c33,stroke-width:1px;
+  class IN,CV,GEO,OUT,API stage;
+  class QC review;

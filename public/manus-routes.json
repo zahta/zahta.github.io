@@ -1,14 +1,40 @@
 {
   "routes": [
-    { "path": "/", "title": "Zahra Taheri | Applied AI Engineer & Researcher" },
-    { "path": "/projects/", "title": "Selected Projects | Zahra Taheri" },
-    { "path": "/projects/clinical-vision/", "title": "Multi-view Computer Vision | Zahra Taheri" },
-    { "path": "/projects/llm-systems-lab/", "title": "LLM Systems Lab | Zahra Taheri" },
-    { "path": "/projects/funqg/", "title": "FunQG Research | Zahra Taheri" },
-    { "path": "/research/", "title": "Research & Publications | Zahra Taheri" },
-    { "path": "/teaching/", "title": "Teaching & Mentoring | Zahra Taheri" },
-    { "path": "/about/", "title": "About Zahra Taheri | Applied AI & Mathematics" },
-    { "path": "/cv/", "title": "CV | Zahra Taheri" },
-    { "path": "/contact/", "title": "Contact | Zahra Taheri" }
+    {
+      "path": "/",
+      "title": "Zahra Taheri | Applied AI Engineer & Researcher"
+    },
+    {
+      "path": "/projects/",
+      "title": "Selected Projects | Zahra Taheri"
+    },
+    {
+      "path": "/projects/clinical-vision/",
+      "title": "Multi-view Computer Vision | Zahra Taheri"
+    },
+    {
+      "path": "/projects/llm-systems-lab/",
+      "title": "LLM Systems Lab | Zahra Taheri"
+    },
+    {
+      "path": "/projects/funqg/",
+      "title": "FunQG Research | Zahra Taheri"
+    },
+    {
+      "path": "/research/",
+      "title": "Research & Publications | Zahra Taheri"
+    },
+    {
+      "path": "/teaching/",
+      "title": "Teaching & Mentoring | Zahra Taheri"
+    },
+    {
+      "path": "/about/",
+      "title": "About Zahra Taheri | Applied AI & Mathematics"
+    },
+    {
+      "path": "/contact/",
+      "title": "Contact | Zahra Taheri"
+    }
   ]
 }

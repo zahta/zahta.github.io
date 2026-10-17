@@ -123,6 +123,11 @@ h3 { margin-bottom: 0.65rem; font-family: var(--serif); font-size: 1.4rem; font-
 }
 .hero-copy { max-width: 56rem; }
 .hero-copy h1 em { color: var(--blue); font-style: normal; }
+.hero-position { max-width: 48rem; margin: -0.25rem 0 1rem; color: var(--muted); font-size: 0.93rem; font-weight: 650; letter-spacing: 0.015em; }
+.hero-portrait { justify-self: end; width: min(100%, 22rem); margin: 0; }
+.hero-portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 35%; border: 1px solid var(--line); background: var(--paper-light); }
+.hero-portrait figcaption { margin-top: 0.55rem; color: var(--muted); font-size: 0.78rem; }
+.narrative-block { padding-block: 0.25rem; }
 .hero-aside {
   border-left: 1px solid var(--line);
   padding: 0.4rem 0 0.4rem 1.4rem;
@@ -276,7 +281,6 @@ figcaption { max-width: 78ch; margin-top: 0.55rem; color: var(--muted); font-siz
 .cv-header-meta { color: var(--muted); font-size: 0.85rem; }
 .cv-role { margin-top: 1.1rem; }
 .cv-role time { color: var(--blue); font-family: var(--mono); font-size: 0.75rem; }
-.download-row { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.5rem 0; }
 
 .site-footer { border-top: 1px solid var(--line); background: #e9e7e0; }
 .footer-inner { display: grid; grid-template-columns: 1fr auto; gap: 0.7rem 1.5rem; align-items: center; padding-block: 1.5rem; }
@@ -289,6 +293,7 @@ figcaption { max-width: 78ch; margin-top: 0.55rem; color: var(--muted); font-siz
   .header-inner { align-items: flex-start; flex-direction: column; gap: 0.5rem; padding-block: 0.75rem; }
   .primary-nav { width: 100%; justify-content: flex-start; gap: 0.2rem 1rem; }
   .hero-grid, .two-column, .contact-panel { grid-template-columns: 1fr; }
+  .hero-portrait { justify-self: start; width: min(100%, 22rem); }
   .hero-aside { max-width: 34rem; border-left: 0; border-top: 1px solid var(--line); padding: 1rem 0 0; }
   .work-row { grid-template-columns: 2rem minmax(0, 1fr); }
   .work-meta { grid-column: 2; }
@@ -319,7 +324,7 @@ figcaption { max-width: 78ch; margin-top: 0.55rem; color: var(--muted); font-siz
 @media print {
   :root { --paper: #fff; --paper-light: #fff; --ink: #111; --muted: #444; --line: #aaa; }
   body { background: #fff; font-size: 10.5pt; }
-  .site-header, .site-footer, .skip-link, .download-row, .breadcrumb { display: none !important; }
+  .site-header, .site-footer, .skip-link, .breadcrumb { display: none !important; }
   .page-wrap { width: 100%; padding: 0; }
   .cv-sheet { max-width: none; padding: 0; border: 0; }
   .cv-sheet h1 { font-size: 24pt; }

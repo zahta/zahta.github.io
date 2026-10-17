@@ -5,7 +5,7 @@ const pages = [
     route: "/",
     file: "home.html",
     title: "Zahra Taheri | Applied AI Engineer & Researcher",
-    description: "Applied AI engineering and research across computer vision, ML systems, graph learning, and evidence-driven LLM applications.",
+    description: "Applied machine-learning engineering across computer vision, graph learning, and LLM systems, with evaluation and reliability built into the work.",
     keywords: ["Applied AI Engineer", "Machine Learning", "Computer Vision", "LLM Systems", "Research", "RAG"],
   },
   {
@@ -58,13 +58,6 @@ const pages = [
     keywords: ["Zahra Taheri", "Applied AI", "PhD Mathematics", "Machine Learning Engineer", "Research"],
   },
   {
-    route: "/cv/",
-    file: "cv.html",
-    title: "CV | Zahra Taheri",
-    description: "Experience, research, teaching, education, and technical skills for Zahra Taheri, Applied Machine Learning Engineer.",
-    keywords: ["Zahra Taheri CV", "Applied Machine Learning Engineer", "Computer Vision", "Research", "Teaching"],
-  },
-  {
     route: "/contact/",
     file: "contact.html",
     title: "Contact | Zahra Taheri",
@@ -78,14 +71,13 @@ const navigation = [
   { label: "Research", route: "/research/" },
   { label: "Teaching", route: "/teaching/" },
   { label: "About", route: "/about/" },
-  { label: "CV", route: "/cv/" },
   { label: "Contact", route: "/contact/" },
 ];
 
 module.exports = {
   siteUrl,
   siteName: "Zahra Taheri — Applied AI & Research",
-  socialImage: `${siteUrl}/assets/images/zahra-profile.png`,
+  socialImage: `${siteUrl}/assets/images/zahra-portrait.webp`,
   pages,
   navigation,
   person: {

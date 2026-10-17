@@ -58,7 +58,10 @@ function renderLayout(page, bodyHtml, { noindex = false, includePerson = false }
   const title = escapeHtml(page.title);
   const description = escapeHtml(page.description);
   const keywords = escapeHtml(page.keywords.join(", "));
-  const image = escapeHtml(socialImage);
+  const image = socialImage ? escapeHtml(socialImage) : null;
+  const imageMeta = image ? `  <meta property="og:image" content="${image}">
+  <meta property="og:image:alt" content="Zahra Taheri in an academic setting">
+  <meta name="twitter:image" content="${image}">` : "";
   const personJson = includePerson
     ? `<script type="application/ld+json">${JSON.stringify(person)}</script>`
     : "";
@@ -82,12 +85,10 @@ function renderLayout(page, bodyHtml, { noindex = false, includePerson = false }
   <meta property="og:description" content="${description}">
   <meta property="og:url" content="${canonical}">
   <meta property="og:site_name" content="${escapeHtml(siteName)}">
-  <meta property="og:image" content="${image}">
-  <meta property="og:image:alt" content="Portrait of Zahra Taheri from her public GitHub profile">
-  <meta name="twitter:card" content="summary_large_image">
+${imageMeta}
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${title}">
   <meta name="twitter:description" content="${description}">
-  <meta name="twitter:image" content="${image}">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/site.css">
   ${personJson}
@@ -115,7 +116,6 @@ function renderLayout(page, bodyHtml, { noindex = false, includePerson = false }
         <a href="mailto:zahra.taheri.ds@gmail.com">Email</a>
         <a href="https://github.com/zahta" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         <a href="https://www.linkedin.com/in/zahta" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-        <a href="/cv/">CV</a>
       </div>
       <p class="footer-note">© ${new Date().getFullYear()} Zahra Taheri · Static, evidence-led portfolio</p>
     </div>
@@ -137,8 +137,16 @@ function writePage(page, fileName, options = {}) {
 fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(output, { recursive: true });
 copyDirectory(sourceAssets, path.join(output, "assets"));
+// Source originals are retained for future editing but are not public assets.
+for (const privateOrUnusedAsset of [
+  "zahra-taheri-cv.pdf",
+  "zahra-taheri-cv.md",
+  "images/zahra-profile.png",
+  "images/zahra-profile.webp",
+]) {
+  fs.rmSync(path.join(output, "assets", privateOrUnusedAsset), { force: true });
+}
 copyDirectory(publicDir, output);
-fs.copyFileSync(path.join(root, "src", "content", "cv.md"), path.join(output, "assets", "zahra-taheri-cv.md"));
 
 for (const page of pages) {
   if (!page.route.startsWith("/") || !page.route.endsWith("/")) {
@@ -149,6 +157,12 @@ for (const page of pages) {
   writePage(page, page.file, { includePerson: page.route === "/" });
 }
 
+// Preserve old bookmarks without publishing a CV page or downloadable file.
+const legacyCv = path.join(output, "cv", "index.html");
+fs.mkdirSync(path.dirname(legacyCv), { recursive: true });
+fs.writeFileSync(legacyCv, `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,follow"><meta http-equiv="refresh" content="0; url=/about/"><link rel="canonical" href="${siteUrl}/about/"><title>CV moved | Zahra Taheri</title></head><body><main><h1>This page has moved</h1><p>The public CV page has been retired. <a href="/about/">Continue to the About page</a>.</p></main></body></html>
+`, "utf8");
 const notFoundPage = {
   route: "/404/",
   title: "Page not found | Zahra Taheri",

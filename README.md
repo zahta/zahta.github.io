@@ -1,82 +1,66 @@
 # Zahra Taheri — Applied AI & Research Portfolio
 
-A static, source-first portfolio prepared for **https://zahta.github.io**. It presents evidence-backed applied AI experience, project case studies, research, teaching, and CV information without a backend or database. The existing GitHub repository was inspected: it contains an older compiled single-page site. GitHub Pages is not currently enabled, and the live address returns a GitHub Pages not-found page. This project has **not** been pushed or deployed.
+A source-first, custom-built static portfolio for `https://zahta.github.io`. It presents evidence-backed applied AI engineering, project case studies, research, and teaching. No framework or runtime package dependencies are required.
 
 ## Project structure
 
 ```text
 .
-├── .github/workflows/pages.yml   # GitHub Actions build and Pages deployment
+├── .github/workflows/pages.yml   # GitHub Actions Pages deployment
 ├── .nojekyll                     # Prevents implicit Jekyll processing
-├── docs/diagrams/*.mmd           # Editable source for evidence-backed diagrams
-├── public/manus-routes.json      # Route manifest used by the build
-├── scripts/build.js              # Zero-dependency static-site generator
-├── src/assets/                   # CSS, favicon, project figures, portrait, CV downloads
-├── src/content/cv.md             # Source for the portfolio-formatted CV download
-├── src/pages/                    # Accessible HTML content, one fragment per route
-├── src/site-data.js              # Canonical URL, page metadata, navigation, schema data
-└── package.json                  # Build and local preview commands; no packages required
+├── diagrams/                     # Editable Mermaid architecture sources
+├── public/manus-routes.json      # Route manifest checked by the build
+├── scripts/build.js              # Static HTML generator and asset copier
+├── src/assets/                   # CSS, favicon, project figures, portrait assets
+├── src/content/cv.md             # Retained source material; excluded from public output
+├── src/pages/                    # Accessible HTML fragments for public pages
+├── src/site-data.js              # Canonical URL, metadata, navigation, schema data
+└── package.json                  # Build and local preview commands
 ```
 
-The build writes static pages to `dist/`, with one `index.html` per route. It adds route-specific canonical, description, Open Graph and Twitter metadata, a favicon, sitemap, robots instructions, and a custom 404 page. Internal links and asset URLs target the root of the GitHub user site, so no repository-name path prefix is needed.
+The build writes pages to `dist/` and generates route metadata, a sitemap, robots instructions, a 404 page, and a compatibility redirect from `/cv/` to `/about/`. Public paths are rooted at the GitHub user-site domain. The site retains its custom static architecture and GitHub Pages Actions workflow.
 
-## Local development and build
+## Build and preview locally
 
-Requirements: Node.js 20 or newer and Python 3.8 or newer. No runtime packages need installing.
+Requirements: Node.js 20+ and Python 3.8+. No install step is needed.
 
 ```bash
 npm run build
 npm run dev
 ```
 
-The local preview is served at `http://localhost:3000`; stop it with `Ctrl+C`. The deployed website is plain static HTML, CSS, images, and metadata. Python is used only for the local preview server.
+Open `http://localhost:3000`; stop the preview server with `Ctrl+C`. `npm run build` is also the verification build used by the GitHub Actions workflow.
 
-## Deploy to the existing `zahta.github.io` repository
+## Deploy to your GitHub Pages repository
 
-The public repository already exists. It currently contains an older built site (`index.html`, `assets/`, and `favicon.ico`), but its Pages settings are not configured. The new workflow deploys the generated `dist/` artifact with GitHub Actions. It does not need to delete the old files from the source branch, but do preserve them in Git history before changing deployment.
+No repository changes or publication were made as part of this handoff. Review the following steps and adapt them to your repository and its access controls:
 
-1. Download and extract this project. In a terminal, clone the existing repository and create a backup branch:
+1. Back up your repository or create a backup branch using your normal Git workflow. Clone your private repository locally if needed.
+2. Copy the project source into the repository root, including hidden files such as `.github/` and `.nojekyll`. Keep the repository's relevant Git history and inspect any existing site files before replacing them. Do not deploy an older `dist/`; the Actions workflow builds the current source.
+3. Run `npm run build`, review the generated `dist/`, then stage and inspect the changes. Commit and push only when you are ready.
+4. In repository **Settings → Pages**, choose **GitHub Actions** as the deployment source if it is not already configured. Confirm that your repository permissions and GitHub plan allow Pages deployment from a private repository.
+5. Run the **Deploy GitHub Pages** workflow from Actions or push to the configured `main` branch. When it succeeds, inspect the home, project, About and contact routes, the `/cv/` redirect, and a narrow viewport.
 
-   ```bash
-   git clone https://github.com/zahta/zahta.github.io.git
-   cd zahta.github.io
-   git switch -c backup-before-portfolio-refresh
-   git push -u origin backup-before-portfolio-refresh
-   git switch main
-   git pull --ff-only
-   ```
+The workflow deploys the generated `dist/` artifact and is configured for pushes to `main` or manual dispatch. Do not push or publish this handoff without your authorization.
 
-   The backup branch preserves the current compiled site and README. If you prefer not to create a branch, download a ZIP of the existing repository first.
+## Updating the site
 
-2. Copy the **contents** of the extracted portfolio project into the repository root, including the hidden `.github/` directory and `.nojekyll`. Do not copy the project’s `dist/` directory if one exists; the Actions workflow builds it. Review any overwrite prompts. This replaces the old README with this project’s deployment and update guide, but the old compiled `index.html` and assets remain in source control unless you deliberately remove them.
+- Edit public content in the corresponding HTML fragment under `src/pages/`.
+- When adding or renaming routes, update `src/site-data.js` and `public/manus-routes.json` together; the build validates consistency.
+- Update `src/pages/research.html` for research/publication context and use project pages for evidence-based case studies.
+- Update `src/pages/teaching.html` for verified courses and supervision.
+- A public CV page and downloadable CV have been retired. `/cv/` redirects to `/about/`. Source CV files remain in the project but the build excludes them from `dist/`; the new user-provided portrait is optimized as WebP and included in generated public assets.
+- Update canonical URL, page metadata, social preview image, or navigation in `src/site-data.js` when appropriate. Update the homepage portrait by replacing `src/assets/images/zahra-portrait.webp` and its alt text when needed.
+- Add or replace project figures in `src/assets/images/`, with accurate captions and meaningful alt text.
 
-3. Review the staged changes and commit them on `main`:
-
-   ```bash
-   git add .
-   git status --short
-   git commit -m "Prepare evidence-led portfolio for GitHub Pages"
-   git push origin main
-   ```
-
-4. On GitHub, open the repository’s **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**, and save if needed. The workflow deploys on pushes to `main` or when manually started from the **Actions** tab.
-
-5. In **Actions**, wait for **Deploy GitHub Pages** to complete successfully. Then visit **https://zahta.github.io** and check the home page, project routes, CV downloads, external links, and a narrow mobile layout.
-
-The workflow uses the `pages: write` and `id-token: write` permissions required for deployment. Repository settings and public GitHub changes must be made from your GitHub account; they have not been changed by this preparation.
-
-## Updating content
-
-- Edit the relevant HTML fragment in `src/pages/`.
-- For new or renamed routes, update `src/site-data.js` and `public/manus-routes.json` together; the build checks that the route lists match.
-- Update `src/pages/research.html` for research roles and publication summaries, and use the project case-study pages for evidence-backed detail.
-- Update `src/pages/teaching.html` for courses and supervision. Add dates, outcomes, or testimonials only when you can verify them.
-- Update `src/pages/cv.html` for the web CV and `src/content/cv.md` for the Markdown source. Replace `src/assets/zahra-taheri-cv.pdf` with a preferred final PDF when available; the included PDF is formatted from the supplied CV text, not an original uploaded file.
-- Update canonical URL, page metadata, social image, or navigation in `src/site-data.js`.
-- Replace or add imagery in `src/assets/images/`. Keep repository figure captions and alt text descriptive.
-
-After edits, run `npm run build`, inspect the generated `dist/` output, commit, and push to `main`. The Actions workflow will build and deploy the update.
+After edits, run `npm run build` and review `dist/` before committing or publishing.
 
 ## Accuracy and scope
 
-The medical-startup work is anonymized and avoids proprietary details. FunQG is collaborative research; Zahra is a shared first author. LLM Systems Lab is an independent project, and its current implementation is distinguished from documented future directions. The RAG evaluator’s deterministic lexical matching limitations are stated explicitly. FastAPI, Docker, orchestration, n8n, Agentic AI, and MCP are described proportionately to the supplied CV. No unsupported clinical outcomes or performance metrics are claimed.
+The computer-vision engagement is anonymized and avoids proprietary implementation detail. FunQG is collaborative research with shared first authorship. LLM Systems Lab is an independent project; implemented capabilities are distinguished from proposed directions, and the deterministic lexical evaluator's limitations are stated. No unsubstantiated clinical outcomes, performance metrics, users, or business impact are claimed.
+
+## Portfolio refresh notes
+
+The homepage now frames the progression from mathematical training through graph research into applied computer vision and LLM systems. Selected work previews pose each project around its technical question and evidence, with the case-study pages retained. Engineering quality-control practices are connected to the vision workflow and retrieval evaluation project.
+
+The earlier GitHub profile image was not used. The user supplied a new photograph, which is optimized as WebP and displayed in the homepage hero. The build excludes the old profile images and CV files from generated output. No phone number or CV download is exposed by the generated website.

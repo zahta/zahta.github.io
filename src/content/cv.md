@@ -1,7 +1,7 @@
 # Zahra Taheri, Ph.D.
 
 **Applied Machine Learning Engineer | Computer Vision | ML Systems | LLMs & RAG**  
-Tehran, Iran · +98 912 070 8213 · [zahra.taheri.ds@gmail.com](mailto:zahra.taheri.ds@gmail.com)  
+Tehran, Iran · [zahra.taheri.ds@gmail.com](mailto:zahra.taheri.ds@gmail.com)  
 [GitHub](https://github.com/zahta) · [LinkedIn](https://www.linkedin.com/in/zahta)
 
 ## Profile summary

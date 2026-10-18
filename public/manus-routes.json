@@ -2,7 +2,7 @@
   "routes": [
     {
       "path": "/",
-      "title": "Zahra Taheri | Applied AI Engineer & Researcher"
+      "title": "Zahra Taheri, Ph.D. | Applied AI Engineer \u00b7 Computer Vision & ML Systems"
     },
     {
       "path": "/projects/",
@@ -18,7 +18,7 @@
     },
     {
       "path": "/projects/funqg/",
-      "title": "FunQG Research | Zahra Taheri"
+      "title": "FunQG \u00b7 Graph ML & Mathematical Reasoning | Zahra Taheri"
     },
     {
       "path": "/research/",
@@ -30,11 +30,19 @@
     },
     {
       "path": "/about/",
-      "title": "About Zahra Taheri | Applied AI & Mathematics"
+      "title": "About | Applied AI Engineer & Mathematical Thinking"
     },
     {
       "path": "/contact/",
       "title": "Contact | Zahra Taheri"
+    },
+    {
+      "path": "/experience/",
+      "title": "Experience & Education | Zahra Taheri"
+    },
+    {
+      "path": "/projects/ai-systems-engineering/",
+      "title": "AI Systems Engineering \u2014 In Progress | Zahra Taheri"
     }
   ]
 }

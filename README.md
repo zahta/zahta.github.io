@@ -1,4 +1,4 @@
-# Zahra Taheri — Applied AI & Research Portfolio
+# Zahra Taheri — Applied AI Engineering Portfolio
 
 A source-first, custom-built static portfolio for `https://zahta.github.io`. It presents evidence-backed applied AI engineering, project case studies, research, and teaching. No framework or runtime package dependencies are required.
 
@@ -13,12 +13,12 @@ A source-first, custom-built static portfolio for `https://zahta.github.io`. It 
 ├── scripts/build.js              # Static HTML generator and asset copier
 ├── src/assets/                   # CSS, favicon, project figures, portrait assets
 ├── src/content/cv.md             # Retained source material; excluded from public output
-├── src/pages/                    # Accessible HTML fragments for public pages
+├── src/pages/                    # Accessible HTML fragments (including Experience and ongoing AI Systems project)
 ├── src/site-data.js              # Canonical URL, metadata, navigation, schema data
 └── package.json                  # Build and local preview commands
 ```
 
-The build writes pages to `dist/` and generates route metadata, a sitemap, robots instructions, a 404 page, and a compatibility redirect from `/cv/` to `/about/`. Public paths are rooted at the GitHub user-site domain. The site retains its custom static architecture and GitHub Pages Actions workflow.
+The build writes 11 primary pages to `dist/` and generates route metadata, a sitemap, robots instructions, a 404 page, and a compatibility redirect from `/cv/` to `/about/`. Public paths are rooted at the GitHub user-site domain. The site retains its custom static architecture and GitHub Pages Actions workflow.
 
 ## Build and preview locally
 
@@ -49,7 +49,7 @@ The workflow deploys the generated `dist/` artifact and is configured for pushes
 - When adding or renaming routes, update `src/site-data.js` and `public/manus-routes.json` together; the build validates consistency.
 - Update `src/pages/research.html` for research/publication context and use project pages for evidence-based case studies.
 - Update `src/pages/teaching.html` for verified courses and supervision.
-- A public CV page and downloadable CV have been retired. `/cv/` redirects to `/about/`. Source CV files remain in the project but the build excludes them from `dist/`; the new user-provided portrait is optimized as WebP and included in generated public assets.
+- The current uploaded CV is published for download at `/assets/zahra-taheri-cv.pdf`. Replace `src/assets/zahra-taheri-cv.pdf` whenever the résumé changes, then rebuild. The legacy `/cv/` URL redirects to `/about/`. Only publish the CV if you consent to the personal contact information inside it being public.
 - Update canonical URL, page metadata, social preview image, or navigation in `src/site-data.js` when appropriate. Update the homepage portrait by replacing `src/assets/images/zahra-portrait.webp` and its alt text when needed.
 - Add or replace project figures in `src/assets/images/`, with accurate captions and meaningful alt text.
 
@@ -64,3 +64,15 @@ The computer-vision engagement is anonymized and avoids proprietary implementati
 The homepage now frames the progression from mathematical training through graph research into applied computer vision and LLM systems. Selected work previews pose each project around its technical question and evidence, with the case-study pages retained. Engineering quality-control practices are connected to the vision workflow and retrieval evaluation project.
 
 The earlier GitHub profile image was not used. The user supplied a new photograph, which is optimized as WebP and displayed in the homepage hero. The build excludes the old profile images and CV files from generated output. No phone number or CV download is exposed by the generated website.
+
+## Changes in this edition (October 2026)
+
+- Repositioned the site around Applied AI Engineering, with mathematics, research, critical thinking, and mentoring as differentiators.
+- Rewrote Home, About, Projects, Contact, and Teaching, and refined the CV, LLM, FunQG, and Research case studies to remove CV-audit phrasing.
+- Added `/experience/` with professional history, education, teaching, and language details.
+- Added `/projects/ai-systems-engineering/` for the private ongoing project. Planned items are *not* represented as implemented or released.
+- Published the supplied October 2026 PDF as a downloadable CV and added links in the header/footer and relevant pages.
+- Kept company code and data private; no invented measurements, deployment claims, or performance metrics.
+- Updated navigation, page metadata, semantic links, styling, and build route manifest.
+
+This ZIP includes both editable source and generated `dist/`. It intentionally excludes `.git/` history. To update an existing repository, copy the project files onto your working tree, preserving the original `.git/` directory.

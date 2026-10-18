@@ -60,7 +60,7 @@ function renderLayout(page, bodyHtml, { noindex = false, includePerson = false }
   const keywords = escapeHtml(page.keywords.join(", "));
   const image = socialImage ? escapeHtml(socialImage) : null;
   const imageMeta = image ? `  <meta property="og:image" content="${image}">
-  <meta property="og:image:alt" content="Zahra Taheri in an academic setting">
+  <meta property="og:image:alt" content="Portrait of Zahra Taheri">
   <meta name="twitter:image" content="${image}">` : "";
   const personJson = includePerson
     ? `<script type="application/ld+json">${JSON.stringify(person)}</script>`
@@ -99,7 +99,7 @@ ${imageMeta}
     <div class="header-inner">
       <a class="brand" href="/" aria-label="Zahra Taheri, home">
         <img class="brand-mark" src="/assets/favicon.svg" width="38" height="38" alt="">
-        <span class="brand-text"><strong>Zahra Taheri</strong><span>Applied AI · Research</span></span>
+        <span class="brand-text"><strong>Zahra Taheri</strong><span>Applied AI Engineering</span></span>
       </a>
       <nav class="primary-nav" aria-label="Primary navigation">
           ${renderNavigation(page.route)}
@@ -111,13 +111,14 @@ ${imageMeta}
   </main>
   <footer class="site-footer">
     <div class="footer-inner">
-      <p class="footer-signoff">Clear thinking. Measured systems. Useful AI.</p>
+      <p class="footer-signoff">Analytical thinking. Practical engineering. Useful AI.</p>
       <div class="footer-links" aria-label="Professional links">
         <a href="mailto:zahra.taheri.ds@gmail.com">Email</a>
+        <a href="/assets/zahra-taheri-cv.pdf" download>Download CV</a>
         <a href="https://github.com/zahta" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         <a href="https://www.linkedin.com/in/zahta" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
       </div>
-      <p class="footer-note">© ${new Date().getFullYear()} Zahra Taheri · Static, evidence-led portfolio</p>
+      <p class="footer-note">© ${new Date().getFullYear()} Zahra Taheri · Applied AI Engineering</p>
     </div>
   </footer>
 </body>
@@ -139,7 +140,6 @@ fs.mkdirSync(output, { recursive: true });
 copyDirectory(sourceAssets, path.join(output, "assets"));
 // Source originals are retained for future editing but are not public assets.
 for (const privateOrUnusedAsset of [
-  "zahra-taheri-cv.pdf",
   "zahra-taheri-cv.md",
   "images/zahra-profile.png",
   "images/zahra-profile.webp",

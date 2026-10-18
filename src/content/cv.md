@@ -35,7 +35,7 @@ Highly self-directed learner with a demonstrated ability to enter new technical 
 - Independently developed, trained, benchmarked, and evaluated machine-learning and deep-learning models for graph-based representation learning and molecular property prediction.
 - Developed FunQG, a quotient-graph-based framework that reduced Graph Neural Network computational complexity through graph coarsening while preserving predictive performance.
 - Conducted knowledge-graph representation-learning experiments using PyKEEN, including entity–relation modeling, knowledge-graph embeddings, and link prediction.
-- Supervised three M.Sc. research projects on knowledge graphs, GNNs, and LLM-based AI systems.
+- served as a supervisor and advisor to multiple M.Sc. students on knowledge graphs, GNNs, and LLM-based AI systems.
 
 ### Postdoctoral Research · Machine Learning & AI, Shahid Beheshti University
 **May 2021 – April 2022**
@@ -48,16 +48,21 @@ Highly self-directed learner with a demonstrated ability to enter new technical 
 
 ## Education & research training
 
+### Postdoctoral Research · Machine Learning & Graph AI, Shahid Beheshti University
+**May 2021 – April 2022**
+
+Focused on graph neural networks and deep learning for healthcare applications, representation learning, predictive modeling, and explainable AI.
+
 ### Ph.D. in Mathematics · University of Isfahan
 **September 2014 – December 2019**
 
-Graduated with distinction · GPA 19.25/20 (approximately 3.85/4.0) · Ph.D. thesis grade: 20/20. Postdoctoral research in Machine Learning & Graph AI at Shahid Beheshti University (May 2021–April 2022) is detailed under Professional Experience.
+Graduated with distinction · GPA 19.25/20 (approximately 3.85/4.0) · Ph.D. thesis grade: 20/20.
 
 ## Academic & teaching experience
 - Invited Lecturer in graduate-level Graph Neural Networks & Machine Learning.
 - Teaching Assistant in Applied Machine Learning, Shahid Beheshti University.
 - Co-Instructor in graduate-level Optimization for Data Science, Shahid Beheshti University.
-- Supervised three M.Sc. research projects on knowledge graphs, GNNs, and LLM-based AI systems.
+- served as a supervisor and advisor to multiple M.Sc. students on knowledge graphs, GNNs, and LLM-based AI systems.
 
 ## Selected publication
 

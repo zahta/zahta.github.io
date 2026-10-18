@@ -2,19 +2,19 @@
   <p class="breadcrumb"><a href="/projects/">Projects</a> / Case study</p>
   <header class="page-heading">
     <p class="eyebrow">Confidential industrial work</p>
-    <h1>From mobile images to structured musculoskeletal measurements.</h1>
-    <p class="lede">A multi-view computer-vision workflow for a production-facing musculoskeletal-assessment application. Company identity, data, and proprietary implementation details are intentionally omitted.</p>
+    <h1>Production-Facing Computer Vision for Musculoskeletal Assessment.</h1>
+    <p class="lede">As the sole AI engineer at a Germany-based startup, I developed an AI workflow spanning problem formulation, computer vision pipelines, validation, and product integration.</p>
   </header>
 
   <dl class="case-meta">
-    <div><dt>Role</dt><dd>AI Developer · sole AI engineer on the workflow</dd></div>
+    <div><dt>Role</dt><dd>AI Developer · Sole AI Engineer</dd></div>
     <div><dt>Context</dt><dd>Remote · early-stage Germany-based medical startup</dd></div>
     <div><dt>Dates</dt><dd>February 2025 – January 2026</dd></div>
   </dl>
 
   <section class="case-section" aria-labelledby="cv-problem"><h2 id="cv-problem">Problem</h2><div><p>The product needed to turn user-captured mobile images from multiple views into structured anatomical measurements for musculoskeletal assessment. Inputs were imperfect, and model outputs needed to be checked for reliability before the AI workflow could support product-facing features.</p></div></section>
   <section class="case-section" aria-labelledby="cv-contribution"><h2 id="cv-contribution">Contribution</h2><div><p>Zahra owned the AI workflow from problem formulation and experimentation through model development, validation, and product integration. She worked with physicians, orthopedists, and sports-medicine experts to translate clinical and product requirements into AI features, measurement logic, validation rules, and outputs supporting personalized corrective-exercise recommendations.</p><p>She worked with the FastAPI-based backend and Swagger/OpenAPI interfaces to test and validate AI API workflows, collaborating with the software engineer responsible for backend and server deployment.</p></div></section>
-  <section class="case-section" aria-labelledby="cv-system"><h2 id="cv-system">System components</h2><div><p>The CV identifies these components in the pipeline; the view below groups them for clarity and does not claim the confidential production-stage order.</p>
+  <section class="case-section" aria-labelledby="cv-system"><h2 id="cv-system">System components</h2><div><p>These are the principal components of the AI workflow, grouped conceptually without disclosing proprietary implementation order.</p>
     <ol class="pipeline-list">
       <li><div><strong>Input views</strong><span>User-captured mobile images from multiple body views.</span></div></li>
       <li><div><strong>Visual analysis</strong><span>Human detection, pose estimation, segmentation, and landmark localization/refinement.</span></div></li>
@@ -22,10 +22,10 @@
       <li><div><strong>Geometric processing</strong><span>Geometry-based post-processing to produce structured anatomical measurements.</span></div></li>
       <li><div><strong>Product integration</strong><span>Validation of AI API workflows through the FastAPI/Swagger interface and coordination with the backend engineer.</span></div></li>
     </ol>
-    <p class="small muted">CV-listed technologies include Python, PyTorch, OpenCV, RTMPose, DensePose, SAM2, and MediaPipe. The diagrammatic grouping is a high-level summary of supplied CV facts, not a disclosure of proprietary architecture.</p>
+    <p class="small muted">Technologies used include Python, PyTorch, OpenCV, RTMPose, DensePose, SAM2, and MediaPipe. This is a conceptual component summary, not the company’s proprietary system architecture.</p>
   </div></section>
-  <section class="case-section" aria-labelledby="cv-decisions"><h2 id="cv-decisions">Engineering judgment</h2><div><p>The CV describes evaluating trade-offs among model accuracy, inference reliability, processing speed, and pipeline complexity. Reliability was supported through detection, view, confidence, and plausibility checks rather than treating raw model output as a final measurement.</p><p>The work involved translating domain-expert requirements into validation criteria and structured outputs while integrating multiple open-source computer-vision components.</p></div></section>
-  <section class="case-section" aria-labelledby="cv-evidence"><h2 id="cv-evidence">Evidence & limits</h2><div><p>The case study is grounded in the supplied CV only. No public benchmark, quantitative performance result, patient outcome, dataset, demo, or implementation code was provided. The company name and product details remain confidential, and the exact proprietary model sequence is not reproduced here.</p><p>There is no public source repository for this engagement. Technologies and responsibilities are attributed only as stated in the CV.</p></div></section>
+  <section class="case-section" aria-labelledby="cv-decisions"><h2 id="cv-decisions">Engineering challenges &amp; decisions</h2><div><p><strong>Imperfect mobile images:</strong> Developed human detection, view classification, and confidence checks to help assess whether inputs and predictions were suitable for downstream processing.</p><p><strong>From predictions to useful measurements:</strong> Combined pose estimation, segmentation, landmark refinement, and geometric post-processing into structured anatomical outputs.</p><p><strong>Reliability and domain constraints:</strong> Built anatomical plausibility checks and worked with physicians, orthopedists, and sports-medicine specialists to turn clinical needs into measurable rules and features.</p><p><strong>Engineering trade-offs:</strong> Compared approaches with regard to accuracy, inference reliability, speed, and implementation complexity; tested AI workflows via the FastAPI-based backend and Swagger/OpenAPI interfaces alongside the backend engineer responsible for deployment.</p></div></section>
+  <section class="case-section" aria-labelledby="cv-evidence"><h2 id="cv-evidence">Confidentiality</h2><div><p>This work was part of a proprietary commercial application. Company datasets, source code, internal implementation details, and product outputs cannot be publicly shared. The case study describes my responsibilities and non-confidential technical approaches without claiming undisclosed performance figures.</p></div></section>
 
   <hr class="rule">
   <p><a class="text-link" href="/projects/">Back to selected projects <span aria-hidden="true">→</span></a></p>
